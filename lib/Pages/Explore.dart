@@ -87,3 +87,36 @@ class Explore extends StatelessWidget {
     );
   }
 }
+
+
+        // Flexible(
+        //   child: ListView.builder(
+        //       itemCount: songs.length,
+        //       scrollDirection: Axis.vertical,
+        //       shrinkWrap: true,
+        //       itemBuilder: (context, index) {
+        //         return Padding(
+        //           padding: const EdgeInsets.only(bottom: 8.0),
+        //           child: Row(
+        //             children: [
+        //               ClipRRect(
+        //                 borderRadius: BorderRadius.circular(20),
+        //                 child: Image.asset(
+        //                   height: 60,
+        //                   width: 60,
+        //                   songs[index].coverUrl,
+        //                   fit: BoxFit.cover,
+        //                 ),
+        //               ),
+        //               const SizedBox(width: 20),
+        //               Column(
+        //                 children: [
+        //                   Text(songs[index].songName),
+        //                   Text(songs[index].description)
+        //                 ],
+        //               ),
+        //             ],
+        //           ),
+        //         );
+        //       }),
+        // )

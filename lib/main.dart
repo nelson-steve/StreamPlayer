@@ -5,6 +5,7 @@ import 'Core.dart';
 import 'Pages/Explore.dart';
 import 'Pages/Profile.dart';
 import 'Pages/Settings.dart';
+import 'Pages/ArtistAccount.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/profile', page: (() => const Profile())),
         GetPage(name: '/settings', page: (() => const Settings())),
         GetPage(name: '/explore', page: (() => const Explore())),
+        GetPage(name: '/artistAccount', page: (() => const ArtistAccount())),
       ],
     );
   }

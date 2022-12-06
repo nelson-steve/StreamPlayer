@@ -1,64 +1,76 @@
 import 'package:flutter/material.dart';
+import 'package:music_player/modals/SongModal.dart';
 
 class Profile extends StatelessWidget {
   const Profile({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: double.infinity,
-      color: Colors.black,
-      child: SingleChildScrollView(
-        child: Column(
+    return Stack(
+      children: [
+        Column(
           children: [
-            Container(
-              height: MediaQuery.of(context).size.height * 0.34,
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Color.fromARGB(230, 155, 52, 34),
-                    Color.fromARGB(255, 63, 20, 8),
-                    Color.fromARGB(255, 20, 12, 10),
-                  ],
+            Expanded(
+                child: Center(
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.65,
+                height: MediaQuery.of(context).size.width * 0.65,
+                decoration: BoxDecoration(
+                  color: Colors.blueAccent,
+                  borderRadius: BorderRadius.circular(150),
+                  image: DecorationImage(
+                    image: AssetImage(Song.songs[6].coverUrl),
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text(
-                    "The Weeknd",
-                    style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 24.0),
-                    child: Text(
-                      "67,023,232 Monthly listeners",
-                      style: TextStyle(color: Colors.grey),
+            )),
+            Expanded(
+                child: Column(
+              children: [
+                const SizedBox(height: 60),
+                ListView(
+                  physics: const NeverScrollableScrollPhysics(),
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  children: [
+                    Container(
+                      alignment: Alignment.center,
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height * 0.09,
+                      decoration: const BoxDecoration(
+                        color: Colors.black12,
+                      ),
+                      child: Text("Nelson Steve"),
                     ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  )
-                ],
-              ),
-            ),
-            Container(
-              height: 300,
-              width: 200,
-              color: Colors.amber,
-            ),
-            Container(
-              height: 300,
-              width: 200,
-              color: Colors.black,
-            ),
+                    const Text("Data 1"),
+                    const Text("Data 1"),
+                    const Text("Data 1"),
+                    const Text("Data 1"),
+                  ],
+                )
+              ],
+            )),
           ],
         ),
-      ),
+        Center(
+          child: Container(
+            width: 180,
+            height: 60,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: Colors.black87,
+              borderRadius: BorderRadius.circular(30),
+            ),
+            child: Center(
+              child: Text("Nelson Steve",
+                  style: Theme.of(context).textTheme.headline6!.copyWith(
+                        fontWeight: FontWeight.bold,
+                      )),
+            ),
+          ),
+        )
+      ],
     );
   }
 }
