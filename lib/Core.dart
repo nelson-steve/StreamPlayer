@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:music_player/Pages/Explore.dart';
+import 'package:music_player/Pages/MusicPlayer.dart';
+import 'package:music_player/Pages/Player.dart';
 import 'package:music_player/Pages/Profile.dart';
 import 'package:music_player/Pages/HomeScreen.dart';
 import 'package:get/get.dart';
+import 'package:music_player/Pages/UserProfile.dart';
 import 'modals/SongModal.dart';
 
 class Core extends StatefulWidget {
@@ -17,7 +20,7 @@ class _CoreState extends State<Core> {
   static const List<Widget> _pages = <Widget>[
     HomeScreen(),
     Explore(),
-    Profile(),
+    UserProfile(),
   ];
   void _onTapped(index) {
     setState(() {
@@ -47,7 +50,7 @@ class _CoreState extends State<Core> {
               leading: const Icon(Icons.grid_view_rounded),
               actions: [
                 GestureDetector(
-                  onTap: (() => Get.toNamed("/artistAccount")),
+                  onTap: (() => Get.toNamed("/logIn")),
                   child: Container(
                     margin: const EdgeInsets.only(right: 20),
                     child: const Icon(Icons.home_rounded),
@@ -77,63 +80,66 @@ class _CoreState extends State<Core> {
         Positioned(
           left: MediaQuery.of(context).size.width * 0.02,
           top: MediaQuery.of(context).size.height * 0.855,
-          child: Container(
-            height: MediaQuery.of(context).size.height * 0.070,
-            width: MediaQuery.of(context).size.width * 0.96,
-            decoration: BoxDecoration(
-              color: Colors.black87,
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    const SizedBox(width: 20),
-                    Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        image: DecorationImage(
-                            image: AssetImage(Song.songs[1].coverUrl),
-                            fit: BoxFit.cover),
-                      ),
-                    ),
-                    SizedBox(width: 10),
-                    Column(
-                      children: [
-                        SizedBox(height: 10),
-                        Text(
-                          "Blinding Lights",
-                          style: Theme.of(context).primaryTextTheme.bodyText1,
+          child: GestureDetector(
+            onTap: (() => Get.toNamed("/musicPlayer")),
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.070,
+              width: MediaQuery.of(context).size.width * 0.96,
+              decoration: BoxDecoration(
+                color: Colors.black87,
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      const SizedBox(width: 20),
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          image: DecorationImage(
+                              image: AssetImage(Song.songs[1].coverUrl),
+                              fit: BoxFit.cover),
                         ),
-                        Text(
-                          "The Weeknd",
-                          style: Theme.of(context).primaryTextTheme.caption,
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Text(
-                      "0:00/5:23",
-                      style: Theme.of(context).primaryTextTheme.caption,
-                    ),
-                    SizedBox(width: 8),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 12.0),
-                      child: const Icon(
-                        Icons.play_circle_outline_rounded,
-                        color: Colors.white,
-                        size: 35,
                       ),
-                    )
-                  ],
-                )
-              ],
+                      SizedBox(width: 10),
+                      Column(
+                        children: [
+                          SizedBox(height: 10),
+                          Text(
+                            "Blinding Lights",
+                            style: Theme.of(context).primaryTextTheme.bodyText1,
+                          ),
+                          Text(
+                            "The Weeknd",
+                            style: Theme.of(context).primaryTextTheme.caption,
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        "0:00/5:23",
+                        style: Theme.of(context).primaryTextTheme.caption,
+                      ),
+                      SizedBox(width: 8),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 12.0),
+                        child: const Icon(
+                          Icons.play_circle_outline_rounded,
+                          color: Colors.white,
+                          size: 35,
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
         )

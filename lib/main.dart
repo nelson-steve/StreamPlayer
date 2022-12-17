@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:music_player/Pages/HomeScreen.dart';
+import 'package:music_player/Pages/MusicPlayer.dart';
+import 'package:music_player/Pages/Player.dart';
+import 'package:music_player/Pages/UserProfile.dart';
 import 'Core.dart';
-import 'Pages/Explore.dart';
+import 'Pages/Login.dart';
 import 'Pages/Profile.dart';
 import 'Pages/Settings.dart';
 import 'Pages/ArtistAccount.dart';
+import 'Pages/SignUp.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Music Player',
+      title: 'Stream Player',
       theme: ThemeData(
           textTheme: Theme.of(context).textTheme.apply(
                 bodyColor: Colors.white,
@@ -28,10 +31,13 @@ class MyApp extends StatelessWidget {
       home: const Core(),
       getPages: [
         GetPage(name: '/', page: (() => const Core())),
-        GetPage(name: '/home', page: (() => const HomeScreen())),
+        GetPage(name: '/logIn', page: (() => const Login())),
+        GetPage(name: '/signUp', page: (() => const SignUp())),
+        GetPage(name: '/player', page: (() => const Player())),
         GetPage(name: '/profile', page: (() => const Profile())),
         GetPage(name: '/settings', page: (() => const Settings())),
-        GetPage(name: '/explore', page: (() => const Explore())),
+        GetPage(name: '/musicPlayer', page: (() => const MusicPlayer())),
+        GetPage(name: '/userProfile', page: (() => const UserProfile())),
         GetPage(name: '/artistAccount', page: (() => const ArtistAccount())),
       ],
     );

@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_string_escapes
+
 class Song {
   final String songName;
   final String description;
@@ -15,13 +17,13 @@ class Song {
     Song(
       songName: "song1",
       description: "description1",
-      url: "assets/music/song1.mp3",
+      url: "assets/music/09 - Blinding Lights.mp3",
       coverUrl: "assets/images/image1.jpg",
     ),
     Song(
       songName: "song2",
       description: "description1",
-      url: "assets/music/song1.mp3",
+      url: "assets/music/glass.mp3",
       coverUrl: "assets/images/image2.jpg",
     ),
     Song(
@@ -81,7 +83,7 @@ class Song {
     Song(
       songName: "song4",
       description: "description1",
-      url: "assets/music/song1.mp3",
+      url: "assets\music\01 - Alone Again.mp3",
       coverUrl: "assets/images/image4.jpg",
     ),
     Song(
@@ -109,4 +111,6 @@ class Song {
       coverUrl: "assets/images/image8.jpg",
     ),
   ];
+
+  String get name => songs[0].songName;
 }
