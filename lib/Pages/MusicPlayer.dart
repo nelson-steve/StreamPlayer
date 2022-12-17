@@ -82,11 +82,10 @@ class _MusicPlayerState extends State<MusicPlayer> {
                   width: double.infinity,
                   height: double.infinity,
                   decoration: BoxDecoration(
-                    // boxShadow: [BoxShadow(),],
                     color: Colors.transparent,
                     borderRadius: BorderRadius.circular(30),
                     image: DecorationImage(
-                      image: AssetImage(Song.songs[3].coverUrl),
+                      image: AssetImage(Song.songs[0].coverUrl),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -111,7 +110,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: const [
                             Icon(
-                              Icons.grid_view_rounded,
+                              Icons.playlist_remove_sharp,
                               color: Colors.white,
                             ),
                             Icon(
@@ -122,6 +121,25 @@ class _MusicPlayerState extends State<MusicPlayer> {
                         ),
                       ),
                     ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text("data"),
+                        Container(
+                          width: MediaQuery.of(context).size.width*0.7,
+                          child: Slider(
+                            /////////////////////////Slider/////////////////////////
+                            value: 0.5,
+                            onChanged: (_) {},
+                            activeColor: Colors.grey.shade600,
+                            thumbColor: Color.fromARGB(255, 207, 70, 15),
+                            inactiveColor: Colors.grey.shade800,
+                          ),
+                        ),
+                        Text("data"),
+                      ],
+                    ),
                     Container(
                       width: double.infinity,
                       height: MediaQuery.of(context).size.height * 0.15,
@@ -129,9 +147,12 @@ class _MusicPlayerState extends State<MusicPlayer> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Icon(Icons.play_arrow, color: Colors.white),
                           const Icon(
                             Icons.play_arrow,
+                            color: Colors.transparent,
+                          ),
+                          const Icon(
+                            Icons.skip_previous_rounded,
                             size: 40,
                             color: Colors.white,
                           ),
@@ -191,13 +212,13 @@ class _MusicPlayerState extends State<MusicPlayer> {
                             },
                           ),
                           const Icon(
-                            Icons.play_arrow,
+                            Icons.skip_next_rounded,
                             size: 40,
                             color: Colors.white,
                           ),
                           const Icon(
                             Icons.play_arrow,
-                            color: Colors.white,
+                            color: Colors.transparent,
                           ),
                         ],
                       ),

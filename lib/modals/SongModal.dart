@@ -2,12 +2,14 @@
 
 class Song {
   final String songName;
+  final String artist;
   final String description;
   final String url;
   final String coverUrl;
 
   Song({
     required this.songName,
+    required this.artist,
     required this.description,
     required this.url,
     required this.coverUrl,
@@ -15,102 +17,60 @@ class Song {
 
   static List<Song> songs = [
     Song(
-      songName: "song1",
+      songName: "Blinding Lights",
+      artist: "The Weeknd",
       description: "description1",
       url: "assets/music/09 - Blinding Lights.mp3",
       coverUrl: "assets/images/image1.jpg",
     ),
     Song(
-      songName: "song2",
+      songName: "Jimmy Crooks",
+      artist: "Drake",
       description: "description1",
       url: "assets/music/glass.mp3",
       coverUrl: "assets/images/image2.jpg",
     ),
     Song(
-      songName: "song3",
+      songName: "A lot",
+      artist: "21 Savage",
       description: "description1",
       url: "assets/music/song1.mp3",
       coverUrl: "assets/images/image3.jpg",
     ),
     Song(
       songName: "song4",
+      artist: "The Weeknd",
       description: "description1",
       url: "assets/music/song1.mp3",
       coverUrl: "assets/images/image4.jpg",
     ),
     Song(
       songName: "song5",
+      artist: "The Weeknd",
       description: "description1",
       url: "assets/music/song1.mp3",
       coverUrl: "assets/images/image5.jpg",
     ),
     Song(
-      songName: "song6",
-      description: "description1",
-      url: "assets/music/song1.mp3",
-      coverUrl: "assets/images/image6.jpg",
-    ),
-    Song(
-      songName: "song7",
-      description: "description1",
-      url: "assets/music/song1.mp3",
-      coverUrl: "assets/images/image7.jpg",
-    ),
-    Song(
-      songName: "song8",
-      description: "description1",
-      url: "assets/music/song1.mp3",
-      coverUrl: "assets/images/image8.jpg",
-    ),
-    Song(
-      songName: "song1",
-      description: "description1",
-      url: "assets/music/song1.mp3",
-      coverUrl: "assets/images/image1.jpg",
-    ),
-    Song(
-      songName: "song2",
-      description: "description1",
-      url: "assets/music/song1.mp3",
-      coverUrl: "assets/images/image2.jpg",
-    ),
-    Song(
-      songName: "song3",
+      songName: "A lot",
+      artist: "21 Savage",
       description: "description1",
       url: "assets/music/song1.mp3",
       coverUrl: "assets/images/image3.jpg",
     ),
     Song(
       songName: "song4",
+      artist: "The Weeknd",
       description: "description1",
-      url: "assets\music\01 - Alone Again.mp3",
+      url: "assets/music/song1.mp3",
       coverUrl: "assets/images/image4.jpg",
     ),
     Song(
       songName: "song5",
+      artist: "The Weeknd",
       description: "description1",
       url: "assets/music/song1.mp3",
       coverUrl: "assets/images/image5.jpg",
-    ),
-    Song(
-      songName: "song6",
-      description: "description1",
-      url: "assets/music/song1.mp3",
-      coverUrl: "assets/images/image6.jpg",
-    ),
-    Song(
-      songName: "song7",
-      description: "description1",
-      url: "assets/music/song1.mp3",
-      coverUrl: "assets/images/image7.jpg",
-    ),
-    Song(
-      songName: "song8",
-      description: "description1",
-      url: "assets/music/song1.mp3",
-      coverUrl: "assets/images/image8.jpg",
     ),
   ];
-
-  String get name => songs[0].songName;
 }

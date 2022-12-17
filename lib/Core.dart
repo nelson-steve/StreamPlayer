@@ -101,7 +101,7 @@ class _CoreState extends State<Core> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           image: DecorationImage(
-                              image: AssetImage(Song.songs[1].coverUrl),
+                              image: AssetImage(Song.songs[0].coverUrl),
                               fit: BoxFit.cover),
                         ),
                       ),

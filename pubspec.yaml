@@ -38,6 +38,7 @@ dependencies:
   get: ^4.6.5
   just_audio: ^0.9.28
   rxdart: ^0.27.7
+  fluttericon: ^2.0.0
   
 dev_dependencies:
   flutter_test:
@@ -65,6 +66,7 @@ flutter:
   assets:
     - assets/music/
     - assets/images/
+    # - assets/images/albums/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
