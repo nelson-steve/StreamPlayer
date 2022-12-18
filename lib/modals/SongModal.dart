@@ -42,14 +42,14 @@ class Song {
       artist: "The Weeknd",
       description: "description1",
       url: "assets/music/song1.mp3",
-      coverUrl: "assets/images/image4.jpg",
+      coverUrl: "assets/images/image11.jpg",
     ),
     Song(
       songName: "song5",
       artist: "The Weeknd",
       description: "description1",
       url: "assets/music/song1.mp3",
-      coverUrl: "assets/images/image5.jpg",
+      coverUrl: "assets/images/image12.jpg",
     ),
     Song(
       songName: "A lot",
