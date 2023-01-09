@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SignUp extends StatelessWidget {
-  const SignUp({super.key});
+  SignUp({super.key});
+  final nameContoller = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -51,13 +54,22 @@ class SignUp extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 20),
-          InputField(input: "Name"),
+          InputField(
+            input: "Name",
+            controller: nameContoller,
+          ),
           const SizedBox(height: 20),
-          InputField(input: "Email"),
+          InputField(
+            input: "Email",
+            controller: emailController,
+          ),
           const SizedBox(height: 20),
-          InputField(input: "Password"),
+          InputField(
+            input: "Password",
+            controller: passwordController,
+          ),
           const SizedBox(height: 20),
-          InputField(input: "Confirm Password"),
+          InputField(input: "Confirm Password", controller: passwordController),
           const SizedBox(height: 60),
           Container(
             width: 150,
@@ -102,7 +114,8 @@ class SignUp extends StatelessWidget {
 
 class InputField extends StatelessWidget {
   final String input;
-  const InputField({super.key, required this.input});
+  final TextEditingController controller;
+  const InputField({super.key, required this.input, required this.controller});
 
   @override
   Widget build(BuildContext context) {

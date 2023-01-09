@@ -31,8 +31,8 @@ class MyApp extends StatelessWidget {
       home: const Core(),
       getPages: [
         GetPage(name: '/', page: (() => const Core())),
-        GetPage(name: '/logIn', page: (() => const Login())),
-        GetPage(name: '/signUp', page: (() => const SignUp())),
+        GetPage(name: '/logIn', page: (() => Login())),
+        GetPage(name: '/signUp', page: (() => SignUp())),
         GetPage(name: '/player', page: (() => const Player())),
         GetPage(name: '/profile', page: (() => const Profile())),
         GetPage(name: '/settings', page: (() => const Settings())),

@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:music_player/modals/SongModal.dart';
 import 'package:music_player/modals/PlayList.dart';

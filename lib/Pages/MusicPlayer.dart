@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:music_player/modals/SongModal.dart';
+import 'package:music_player/modals/SeekBar.dart';
+import 'package:rxdart/rxdart.dart' as rxdart;
 
 /////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////-USING-/////////////////////////////////////
@@ -32,6 +34,18 @@ class _MusicPlayerState extends State<MusicPlayer> {
     player.dispose();
     super.dispose();
   }
+
+  Stream<SeekBarData> get _seekBarDataStream =>
+      rxdart.Rx.combineLatest2<Duration, Duration?, SeekBarData>(
+          player.positionStream, player.durationStream, (
+        Duration position,
+        Duration? duration,
+      ) {
+        return SeekBarData(
+          position,
+          duration ?? Duration.zero,
+        );
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -125,19 +139,22 @@ class _MusicPlayerState extends State<MusicPlayer> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text("data"),
                         Container(
-                          width: MediaQuery.of(context).size.width*0.7,
-                          child: Slider(
-                            /////////////////////////Slider/////////////////////////
-                            value: 0.5,
-                            onChanged: (_) {},
-                            activeColor: Colors.grey.shade600,
-                            thumbColor: Color.fromARGB(255, 207, 70, 15),
-                            inactiveColor: Colors.grey.shade800,
+                          width: MediaQuery.of(context).size.width * 0.7,
+                          child: StreamBuilder<SeekBarData>(
+                            stream: _seekBarDataStream,
+                            builder: (context, snapshot) {
+                              final positionData = snapshot.data;
+                              return SeekBar(
+                                position:
+                                    positionData?.position ?? Duration.zero,
+                                duration:
+                                    positionData?.duration ?? Duration.zero,
+                                onChangeEnd: player.seek,
+                              );
+                            },
                           ),
                         ),
-                        Text("data"),
                       ],
                     ),
                     Container(
@@ -238,42 +255,3 @@ class _MusicPlayerState extends State<MusicPlayer> {
     );
   }
 }
-
-// Scaffold(
-//       backgroundColor: Colors.grey.shade900,
-//       body: Column(
-//         children: [
-//           Container(
-//             height: MediaQuery.of(context).size.height * 0.25,
-//             width: double.infinity,
-//             color: Colors.transparent,
-//             child: Column(
-//               mainAxisAlignment: MainAxisAlignment.center,
-//               children: [
-//                 Text(
-//                   "Blinding Lights",
-//                   style: TextStyle(
-//                     fontSize: 30,
-//                     fontWeight: FontWeight.normal,
-//                   ),
-//                 ),
-//                 Text(songs.songName),
-//               ],
-//             ),
-//           ),
-//           Container(
-//             height: MediaQuery.of(context).size.height * 0.5,
-//             width: double.infinity,
-//             color: Colors.amber,
-//           ),
-//           Container(
-//             height: MediaQuery.of(context).size.height * 0.25,
-//             width: double.infinity,
-//             color: Colors.amberAccent,
-//           ),
-//         ],
-//       ),
-//     );
-
-
-

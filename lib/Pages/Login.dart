@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Login extends StatelessWidget {
-  const Login({super.key});
+  Login({super.key});
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +57,7 @@ class Login extends StatelessWidget {
               child: Padding(
             padding: EdgeInsets.only(left: 16.0, right: 16.0),
             child: TextField(
+              controller: emailController,
               cursorColor: Colors.deepOrange,
               autofocus: false,
               decoration: InputDecoration(
@@ -68,6 +71,9 @@ class Login extends StatelessWidget {
                   // iconColor: Colors.amberAccent,
                   // focusColor: Colors.amber,
                   ),
+              onChanged: ((value) {
+                if (value.isNotEmpty) {}
+              }),
             ),
           )),
           const SizedBox(height: 20),
@@ -75,6 +81,7 @@ class Login extends StatelessWidget {
               child: Padding(
             padding: const EdgeInsets.only(left: 16.0, right: 16.0),
             child: TextField(
+              controller: passwordController,
               cursorColor: Colors.deepOrange,
               autofocus: false,
               decoration: InputDecoration(
