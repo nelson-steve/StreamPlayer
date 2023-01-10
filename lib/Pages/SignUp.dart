@@ -1,11 +1,70 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-class SignUp extends StatelessWidget {
+class SignUp extends StatefulWidget {
   SignUp({super.key});
+
+  @override
+  State<SignUp> createState() => _SignUpState();
+}
+
+class _SignUpState extends State<SignUp> {
+  String? errorMessage = "";
+
   final nameContoller = TextEditingController();
+
   final emailController = TextEditingController();
+
   final passwordController = TextEditingController();
+
+  void getUser() {}
+
+  void createNewUser() async {
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+              email: "barry.allen2@example.com",
+              password: "SuperSecretPassword!");
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        print('The password provided is too weak.');
+      } else if (e.code == 'email-already-in-use') {
+        print('The account already exists for that email.');
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  void createUser() async {
+    setState(() {
+      print("Hello");
+    });
+    try {
+      await _auth.createUserWithEmailAndPassword(
+          email: emailController.text.toString(),
+          password: passwordController.text.toString());
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        print(e.message);
+      });
+    }
+  }
+  // Future<void> createUserWithEmailAndPassword() async {
+  //   print("Hello");
+  //   try {
+  //     await _auth.createUserWithEmailAndPassword(
+  //         email: emailController.text, password: passwordController.text);
+  //   } on FirebaseAuthException catch (e) {
+  //     setState(() {
+  //       print(e.message);
+  //     });
+  //   }
+  // }
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +74,7 @@ class SignUp extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(height: 70),
+          SizedBox(height: 50),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
@@ -34,7 +93,7 @@ class SignUp extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 80),
+          const SizedBox(height: 50),
           Row(
             children: const [
               SizedBox(width: 20),
@@ -69,19 +128,25 @@ class SignUp extends StatelessWidget {
             controller: passwordController,
           ),
           const SizedBox(height: 20),
-          InputField(input: "Confirm Password", controller: passwordController),
+          InputField(
+            input: "Confirm Password",
+            controller: passwordController,
+          ),
           const SizedBox(height: 60),
-          Container(
-            width: 150,
-            height: 60,
-            decoration: BoxDecoration(
-              color: Color.fromARGB(255, 207, 70, 15),
-              borderRadius: BorderRadius.circular(20),
+          GestureDetector(
+            child: Container(
+              width: 150,
+              height: 60,
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 207, 70, 15),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Center(
+                child: Text("Sign Up",
+                    style: Theme.of(context).textTheme.headline5),
+              ),
             ),
-            child: Center(
-              child:
-                  Text("Sign Up", style: Theme.of(context).textTheme.headline5),
-            ),
+            onTap: createNewUser,
           ),
           SizedBox(height: 60),
           Row(
@@ -104,7 +169,7 @@ class SignUp extends StatelessWidget {
             ],
           ),
           SizedBox(
-            height: 20,
+            height: 40,
           )
         ],
       ),
@@ -122,7 +187,8 @@ class InputField extends StatelessWidget {
     return Center(
         child: Padding(
       padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-      child: TextField(
+      child: TextFormField(
+        controller: controller,
         cursorColor: Colors.deepOrange,
         autofocus: false,
         decoration: InputDecoration(

@@ -1,10 +1,72 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class Login extends StatelessWidget {
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+
+class Login extends StatefulWidget {
   Login({super.key});
+
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
   final emailController = TextEditingController();
+
   final passwordController = TextEditingController();
+
+  @override
+  void initState() async {
+    super.initState();
+    await Firebase.initializeApp();
+  }
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  void login() async {
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(
+              email: "barry.allen1@example.com",
+              password: "SuperSecretPassword!");
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil('/core', (Route<dynamic> route) => false);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
+      }
+    }
+  }
+
+  void getuser() {
+    var currentUser = FirebaseAuth.instance.currentUser;
+
+    if (currentUser != null) {
+      print(currentUser.uid);
+    }
+  }
+
+  void deleteUser() async {
+    try {
+      String email = 'barry.allen@example.com';
+      String password = 'SuperSecretPassword!';
+
+// Create a credential
+      AuthCredential credential =
+          EmailAuthProvider.credential(email: email, password: password);
+      await FirebaseAuth.instance.currentUser!
+          .reauthenticateWithCredential(credential);
+      await FirebaseAuth.instance.currentUser!.delete();
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'requires-recent-login') {
+        print(
+            'The user must reauthenticate before this operation can be executed.');
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,9 +133,6 @@ class Login extends StatelessWidget {
                   // iconColor: Colors.amberAccent,
                   // focusColor: Colors.amber,
                   ),
-              onChanged: ((value) {
-                if (value.isNotEmpty) {}
-              }),
             ),
           )),
           const SizedBox(height: 20),
@@ -107,17 +166,20 @@ class Login extends StatelessWidget {
             ),
           ]),
           const SizedBox(height: 60),
-          Container(
-            width: 150,
-            height: 60,
-            decoration: BoxDecoration(
-              color: Color.fromARGB(255, 207, 70, 15),
-              borderRadius: BorderRadius.circular(20),
+          InkWell(
+            child: Container(
+              width: 150,
+              height: 60,
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 207, 70, 15),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Center(
+                child: Text("Log in",
+                    style: Theme.of(context).textTheme.headline5),
+              ),
             ),
-            child: Center(
-              child:
-                  Text("Log in", style: Theme.of(context).textTheme.headline5),
-            ),
+            onTap: login,
           ),
           SizedBox(
             height: 100,

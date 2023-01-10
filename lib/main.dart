@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:music_player/Pages/MusicPlayer.dart';
@@ -10,12 +11,19 @@ import 'Pages/Settings.dart';
 import 'Pages/ArtistAccount.dart';
 import 'Pages/SignUp.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+  @override
+  void initState() {
+  WidgetsFlutterBinding.ensureInitialized();
+  Firebase.initializeApp();
+  }
 
   // This widget is the root of your application.
   @override
@@ -28,9 +36,9 @@ class MyApp extends StatelessWidget {
                 bodyColor: Colors.white,
                 displayColor: Colors.white,
               )),
-      home: const Core(),
+      home: Login(),
       getPages: [
-        GetPage(name: '/', page: (() => const Core())),
+        GetPage(name: '/core', page: (() => const Core())),
         GetPage(name: '/logIn', page: (() => Login())),
         GetPage(name: '/signUp', page: (() => SignUp())),
         GetPage(name: '/player', page: (() => const Player())),
